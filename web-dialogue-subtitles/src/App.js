@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Dictaphone from './Dictaphone.js';
 import './App.css';
 
 class App extends Component {
@@ -7,7 +8,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      test: {}
+      test: 1,
+      test2: 'string',
     }
   }
 
@@ -15,7 +17,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello World!</h1>
+        <h1>Hello World!{this.state.test}</h1>
+        <Dictaphone/>
       </div>
     );
 
