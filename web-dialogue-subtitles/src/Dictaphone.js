@@ -15,7 +15,7 @@ const Dictaphone = ({
   return (
     <div>
       <button onClick={resetTranscript}>Reset</button>
-      <AudioContainer transcript={transcript}></AudioContainer>
+      <AudioContainer transcript={transcript} resetTranscript={resetTranscript}></AudioContainer>
     </div>
   );
 };
