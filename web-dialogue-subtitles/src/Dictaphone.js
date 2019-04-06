@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import SpeechRecognition from "react-speech-recognition";
+
+import AudioContainer from './AudioContainer';
 
 const Dictaphone = ({
   transcript,
@@ -13,7 +15,7 @@ const Dictaphone = ({
   return (
     <div>
       <button onClick={resetTranscript}>Reset</button>
-      <h1>{transcript}</h1>
+      <AudioContainer transcript={transcript}></AudioContainer>
     </div>
   );
 };
