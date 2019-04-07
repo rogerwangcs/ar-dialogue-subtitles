@@ -6,8 +6,13 @@
 	<canvas id="canvasOutput"></canvas>
 </body>
 <script src="opencv.js"></script>
-<script src="cv.js"></script>
 <script src="vision.js"></script>
 <script src ="face-api.js"></script>
+<script src = "facerec.js"></script>
+
+<div style="position: relative" class="margin">
+  <video onplay="onPlay(this)" id="inputVideo" autoplay muted></video>
+  <canvas id="overlay" />
+</div>
 
 </html>
