@@ -15,7 +15,7 @@ class DialogueBubble extends Component {
       maxWidth: "800px",
       borderRadius: "15px",
       backgroundColor: "black",
-      opacity: 0.7
+      opacity: 0.7,
     };
 
     return (

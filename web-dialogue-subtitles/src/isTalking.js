@@ -1,4 +1,6 @@
-const personTalking = (lipsArray) => {
+import * as faceapi from 'face-api.js';
+
+export const personTalking = (lipsArray) => {
     let x = 0;
     let y = 0;
     for (const lip of lipsArray){
@@ -9,9 +11,14 @@ const personTalking = (lipsArray) => {
     let averageY = y/(lipsArray.length);
 
     let dist = 0;
+    let maxDist = 0;
     for (const lip of lipsArray){
-        dist += euclideanDistance([averageX, averageY], [lip._x, lip._y]);
+        const currDist = faceapi.euclideanDistance([averageX, averageY], [lip._x, lip._y]);
+        dist += currDist;
+        if (maxDist < currDist){
+            maxDist = currDist;
+        }
     }
-
-    return dist
+    dist = dist/maxDist;
+    return dist;
 };
