@@ -46,12 +46,9 @@ class WebcamDisplay extends Component {
 
   landmarkWebCamPicture = async (webcam) => {
     const ctx = this.canvasPicWebCam.current.getContext("2d");
+    await this.getFullFaceDescription(webcam.video);
     ctx.clearRect(0, 0, this.canvasPicWebCam.current.width, this.canvasPicWebCam.current.height);
-    const describe = async () => {
-      await this.getFullFaceDescription(webcam.video);
-      this.drawDescription(this.canvasPicWebCam.current);
-    };
-    await describe();
+    this.drawDescription(this.canvasPicWebCam.current);
   }
 
   render() {
