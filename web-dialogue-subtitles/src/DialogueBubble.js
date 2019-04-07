@@ -7,24 +7,53 @@ class DialogueBubble extends Component {
   }
   render() {
     const styles = {
-      position: "absolute",
-      zIndex: 2,
-      left: this.props.left + 500,
-      top: this.props.top - 200,
-      padding: "5px",
-      maxWidth: "800px",
-      borderRadius: "15px",
-      backgroundColor: "black",
-      opacity: 0.7,
+      wrapper: {
+        display: 'flex',
+        width: '100vw',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: "absolute",
+      },
+      wrapper1: {
+        display: 'flex',
+        width: 640,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        position: "absolute",
+      },
+      wrapper2: {
+        display: 'flex',
+        width: 800,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        position: "absolute",
+        zIndex: 200,
+        left: this.props.left - 400,
+        bottom: -this.props.top + 150,
+      },
+      div: {
+        padding: 5,
+        maxWidth: 800,
+        borderRadius: "3px",
+        border: "1px solid white",
+        backgroundColor: "black",
+        opacity: 0.7
+      },
     };
 
     return (
-      <div>
-        <div style={{ width: "1000px" }}>
-          <div className="dialogueBubble" style={styles}>
-            <p style={{ fontSize: "24px", color: "white", display: "inline" }}>
-              {this.props.dialogue}
-            </p>
+      <div style={styles.wrapper}>
+        <div style={styles.wrapper1}>
+          <div style={{position: 'absolute', top: this.props.top, left: this.props.left, width: 3, height: 3, background: 'red', zIndex: 100}}></div>
+          <div style={styles.wrapper2}>
+            <div className="dialogueBubble" style={styles.div}>
+              <p style={{ fontSize: "24px", color: "white", display: "inline" }}>
+                {this.props.dialogue}
+              </p>
+            </div>
           </div>
         </div>
       </div>
