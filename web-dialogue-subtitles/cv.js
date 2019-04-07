@@ -99,24 +99,39 @@ function find_hand(image)
 	cv.findContours(mask, contours, harch, Number(cv.RETR_COMP), Number(cv.CHAIN_APPROX_SIMPLE));
     var handContour = [];
 
-	if (contours.size() > 0)
+	if (contours.size() > 1)
 	{
 		var maxIdx = 0;
+    var max2Idx = 1;
 		var maxSize = contours.get(0).rows;
+    var max2Size = contours.get(1).rows;
+    if(maxSize < max2Size){
+      var tmp = maxSize;
+      maxSize = max2Size;
+      max2Size = maxSize;
+      maxIdx = 1;
+      max2Idx = 0;
+    }
 		for(var i = 0; i < contours.size(); i++)
 		{
 			if (contours.get(i).rows > maxSize)
 			{
+        max2Size = maxSize;
 				maxSize = contours.get(i).rows;
 				maxIdx = i;
-			}
+			}else if(contours.get(i) > max2Size){
+        max2Size = contours.get(i);
+        max2Idx = i;
+      }
 		}
 
 		handContour = contours.get(maxIdx);
+    handContour2 = contours.get(maxIdx2);
 
 		if (handContour.rows > 0)
 		{
 			rc = cv.boundingRect(handContour);
+      rc2 = cv.boundingRect(handContour2);
 
 			minMat.delete();
 			maxMat.delete();
@@ -124,7 +139,10 @@ function find_hand(image)
 			contours.delete();
 			harch.delete();
       mask.delete();
-			return make_bounds(rc.x, rc.y, rc.width, rc.height);
+      var handBound1 = make_bounds(rc.x, rc.y, rc.width, rc.height);
+      var handBound2 = make_bounds(rc2.x, rc2.y, rc2.width,rc2.height);
+      var result = new Array(handBound1, handBound2);
+			return result;
 		}
 	}
 

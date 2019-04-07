@@ -48,12 +48,19 @@ function startVideoProcessing() {
 function processVideo() {
   vc.read(src);
   var mask = new cv.Mat();
-  hand = find_hand(src, mask);
+  var input = find_hand(src, mask);
+  hand = input[0];
   var handMin = new cv.Point(hand[0], hand[1]);
   var handMax = new cv.Point(hand[2], hand[3]);
+  hand2 = input[1];
+  var handMin2 = new cv.Point(hand2[0], hand2[1]);
+  var handMax2 = new cv.Point(hand2[2], hand2[3]);
   cv.rectangle(src, handMin, handMax, new cv.Scalar(255, 0, 0), 2, cv.LINE_AA, 0);
+  cv.rectangle(src, handMin2, handMax2, new cv.Scalar(255, 0, 0), 2, cv.LINE_AA, 0);
   var handCenter = bounds_center(hand);
+  var handCenter2 = bounds_center(hand2);
   console.log(handCenter);
+  console.log(handCenter2);
   cv.imshow("canvasOutput", src);
   requestAnimationFrame(processVideo);
   mask.delete();
