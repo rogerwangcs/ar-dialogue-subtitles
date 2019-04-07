@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       transcriptLog: [
         { person: "Person 1", text: "hey my name is roger" },
-        { person: "Person 2", text: "hey my name is john" }
+        { person: "Person 2", text: "hey my name is john" },
       ]
     };
   }
@@ -44,13 +44,13 @@ class App extends Component {
             params={{
               particles: {
                 number: {
-                  value: 80
+                  value: 60
                 },
                 color: {
-                  value: "#ccffff"
+                  value: "#648be5"
                 },
                 size: {
-                  value: 5,
+                  value: 10,
                   random: false,
                 },
                 line_linked: {
@@ -67,7 +67,7 @@ class App extends Component {
           />
         </div>
         <h1 className="header">Live Subtitles</h1>
-        {/* <Dictaphone addToTranscript={this.addToTranscript} /> */}
+        <Dictaphone addToTranscript={this.addToTranscript} />
         <WebcamDisplay />
         <div className="transcriptContainer">
           <h1>Transcript:</h1>
