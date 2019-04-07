@@ -17,7 +17,8 @@ class App extends Component {
       faceDescriptions: [],
       lipCoords: [{3: {_x: 0, _y: 0}}],
       mouths: [],
-      personSpeaking: 1,
+      personSpeaking: -1,
+      showLandmarks: false,
     };
   }
 
@@ -26,8 +27,7 @@ class App extends Component {
       this.setState(
         {
           mouths: nextState.lipCoords.map(face => this.mouthDist(face))
-        },
-        () => console.log(this.state.mouths)
+        }
       );
     }
   }
@@ -73,10 +73,16 @@ class App extends Component {
   };
 
   activeSpeakerCoords = () => {
-    if(this.state.mouths.length > 0) {
-      let i = this.state.mouths.indexOf(Math.max(...this.state.mouths));
-      this.setState({personSpeaking: i});
-      return this.state.lipCoords[0][i];
+    const { mouths, lipCoords } = this.state;
+    if(mouths.length > 0) {
+      let i = mouths.indexOf(Math.max(...mouths));
+      if (this.state.personSpeaking !== i) {
+        this.setState({personSpeaking: i});
+      }
+      return lipCoords[i][lipCoords[i].length >= 3 ? 3 : 0];
+    }
+    if (this.state.personSpeaking !== -1) {
+      this.setState({personSpeaking: -1});
     }
     return {_x: 0, _y: 0};
   }
@@ -85,14 +91,22 @@ class App extends Component {
     const listTranscript = this.state.transcriptLog.map(line => {
       return (
         <div>
-          <span>{`Person ${line.person}: `}</span>
+          <span>{`Person ${line.person === -1 ? 'Offscreen' : line.person + 1}: `}</span>
           <span>{line.text}</span>
         </div>
       );
     });
 
+    const lipCoords = this.activeSpeakerCoords();
+
     return (
-      <div className="App">
+      <div className="App" tabIndex="0" onKeyDown={(ev) => {
+        if (ev.keyCode === 32) {
+          this.setState((state) => ({
+            showLandmarks: !state.showLandmarks,
+          }));
+        }
+      }}>
         <div className="background">
           <Particles
             params={{
@@ -121,10 +135,11 @@ class App extends Component {
           />
         </div>
         <h1 className="header">Live Subtitles</h1>
-        <Dictaphone addToTranscript={this.addToTranscript} lipCoord={this.state.lipCoords[0][3]}/>
+        <Dictaphone addToTranscript={this.addToTranscript} lipCoord={lipCoords}/>
         <WebcamDisplay
           setLipCoords={this.setLipCoords}
           setFaceDescriptions={this.setFaceDescriptions}
+          showLandmarks={this.state.showLandmarks}
         />
         <div className="transcriptContainer">
           <h1>Transcript:</h1>

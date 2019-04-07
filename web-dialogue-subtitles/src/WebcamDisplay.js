@@ -12,10 +12,16 @@ class WebcamDisplay extends Component {
     this.fullFaceDescriptions = null;
     this.canvas = React.createRef();
     this.canvasPicWebCam = React.createRef();
+    this.state = {
+      loaded: false,
+    }
   }
 
   async componentDidMount() {
-    await this.loadModels();
+    if (!this.state.loaded) {
+      await this.loadModels();
+      this.setState({ loaded: true });
+    }
   }
 
   async loadModels() {
@@ -48,11 +54,12 @@ class WebcamDisplay extends Component {
   }
 
   landmarkWebCamPicture = async webcam => {
+    if (!this.state.loaded) return;
     const ctx = this.canvasPicWebCam.current.getContext("2d");
     await this.getFullFaceDescription(webcam.video);
     ctx.clearRect(0, 0, this.canvasPicWebCam.current.width, this.canvasPicWebCam.current.height);
     // this draws the lines
-    // this.drawDescription(this.canvasPicWebCam.current);
+    this.drawDescription(this.canvasPicWebCam.current);
   }
 
   render() {
@@ -72,7 +79,7 @@ class WebcamDisplay extends Component {
             landmarkPicture={this.landmarkWebCamPicture}
           />
           <canvas
-            style={{ position: "absolute", top: 0, left: 0, zIndex: 0}}
+            style={{ display: this.props.showLandmarks ? 'block' : 'none', position: "absolute", top: 0, left: 0, zIndex: 0}}
             ref={this.canvasPicWebCam}
             width={640}
             height={480}
