@@ -1,12 +1,13 @@
 import React from "react";
 import SpeechRecognition from "react-speech-recognition";
 
-import AudioContainer from './AudioContainer';
+import AudioContainer from "./AudioContainer";
 
 const Dictaphone = ({
   transcript,
   resetTranscript,
-  browserSupportsSpeechRecognition
+  browserSupportsSpeechRecognition,
+  addToTranscript
 }) => {
   if (!browserSupportsSpeechRecognition) {
     return null;
@@ -14,8 +15,12 @@ const Dictaphone = ({
 
   return (
     <div>
-      <button onClick={resetTranscript}>Reset</button>
-      <AudioContainer transcript={transcript} resetTranscript={resetTranscript}></AudioContainer>
+      {/* <button onClick={resetTranscript}>Reset</button> */}
+      <AudioContainer
+        transcript={transcript}
+        addToTranscript={addToTranscript}
+        resetTranscript={resetTranscript}
+      />
     </div>
   );
 };
