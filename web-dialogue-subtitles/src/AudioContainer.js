@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import DialogueBubble from './DialogueBubble';
+import DialogueBubble from "./DialogueBubble";
 
 class AudioContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      paused: false,
-    }
+      paused: false
+    };
 
     this.pauseTimer = null;
   }
@@ -17,25 +17,30 @@ class AudioContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.state.paused) {
+    if (this.state.paused) {
       this.props.resetTranscript();
-      this.setState({paused: false});
+      this.props.addToTranscript(1, this.props.transcript);
+      this.setState({ paused: false });
     }
-    console.log('component updated');
+    console.log("pause?:" + this.state.paused);
     clearTimeout(this.pauseTimer);
     this.detectPause();
   }
 
   detectPause = () => {
     this.pauseTimer = setTimeout(() => {
-      this.setState({paused: true}, ()=> {console.log(this.state.paused)});
-    }, 1500);
-  }
+      this.setState({ paused: true });
+    }, 1000);
+  };
 
   render() {
     return (
       <div className="audioContainer">
-        <DialogueBubble dialogue={this.props.transcript} left='600px' top='250px'/>
+        <DialogueBubble
+          dialogue={this.props.transcript}
+          left="600px"
+          top="250px"
+        />
       </div>
     );
   }

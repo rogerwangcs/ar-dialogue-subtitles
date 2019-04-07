@@ -1,25 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class DialogueBubble extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {};
   }
   render() {
     const styles = {
-      position: 'absolute',
+      position: "absolute",
       left: this.props.left,
       top: this.props.top,
-      padding: '15px',
-      minWidth: '800px',
-      borderRadius: '20px',
-      backgroundColor: 'black',
-      opacity: 0.7,
+      padding: "5px",
+      maxWidth: "800px",
+      borderRadius: "15px",
+      backgroundColor: "black",
+      opacity: 0.7
     };
 
     return (
-      <div className="dialogueBubble" style={styles}>
-        <p style={{fontSize: '24px', color: 'white'}}>{this.props.dialogue}</p>
+      <div>
+        <div style={{ width: "1000px" }}>
+          <div className="dialogueBubble" style={styles}>
+            <p style={{ fontSize: "24px", color: "white", display: "inline" }}>
+              {this.props.dialogue}
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

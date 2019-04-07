@@ -5,9 +5,8 @@ import WebCamPicture from './components/WebCamPicture.js';
 
 const MODEL_URL = '/weights'
 const minConfidence = 0.6
-const testImage = '/img/bonnie.jpg'
 
-export default class App extends Component {
+class WebcamDisplay extends Component {
 
   constructor(props){
     super(props);
@@ -18,10 +17,6 @@ export default class App extends Component {
 
   async componentDidMount() {
     await this.loadModels();
-    const testImageHTML = document.getElementById('test')
-    this.drawHTMLImage(this.canvas.current,testImageHTML,296,296);
-    await this.getFullFaceDescription(this.canvas.current);
-    this.drawDescription(this.canvas.current);
   }
 
   async loadModels () {
@@ -61,7 +56,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="App" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ position: 'relative' }}>
           <WebCamPicture style={{ position: 'absolute', top: 0, left: 0 }} landmarkPicture={this.landmarkWebCamPicture} />
           <canvas style={{ position: 'absolute', top: 0, left: 0 }} ref={this.canvasPicWebCam} width={640} height={480} />
@@ -71,3 +66,4 @@ export default class App extends Component {
   }
 }
 
+export default WebcamDisplay;

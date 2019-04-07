@@ -1,24 +1,37 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Helvetica Neue";
+  background-color: rgb(75, 75, 75);
 }
 
 .App {
   margin: auto;
 }
 
+.header {
+  color: rgb(230, 230, 230);
+  font-size: 72px;
+  display: block;
+  margin: 25px 0px;
+}
+
+.background {
+  position: absolute;
+  z-index: -1;
+
+  width: 100%;
+  height: 100%;
+}
+
 .webcamDisplay {
-  width: 920px;
-  height: 540px;
+  width: 640px;
+  height: 480px;
   margin: auto;
 
   background-color: lightgray;
-  border-radius: 15px;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
 }
 
 .audioContainer {
@@ -29,5 +42,25 @@ body {
 
   box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
   border-radius: 10px; */
+}
 
+.transcriptContainer {
+  margin: auto;
+  margin-top: 50px;
+  width: 60%;
+  padding: 10px;
+  background-color: white;
+
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+}
+
+.transcriptContainer > h1 {
+  display: block;
+  margin-bottom: 25px;
+}
+
+.transcriptContainer > div {
+  margin: 10px;
+  font-size: 20px;
 }
