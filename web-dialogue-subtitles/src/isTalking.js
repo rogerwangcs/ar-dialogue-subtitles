@@ -19,6 +19,6 @@ export const personTalking = (lipsArray) => {
             maxDist = currDist;
         }
     }
-    dist = dist/maxDist;
+    dist = dist/(maxDist * maxDist);
     return dist;
 };
