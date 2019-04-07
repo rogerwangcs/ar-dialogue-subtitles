@@ -32,7 +32,7 @@ class DialogueBubble extends Component {
         position: "absolute",
         zIndex: 200,
         left: this.props.left - 400,
-        bottom: -this.props.top + 150,
+        bottom: -this.props.top + 225,
       },
       div: {
         padding: 5,
@@ -47,7 +47,7 @@ class DialogueBubble extends Component {
     return (
       <div style={styles.wrapper}>
         <div style={styles.wrapper1}>
-          <div style={{position: 'absolute', top: this.props.top, left: this.props.left, width: 3, height: 3, background: 'red', zIndex: 100}}></div>
+          {/* <div style={{position: 'absolute', top: this.props.top, left: this.props.left, width: 3, height: 3, background: 'red', zIndex: 100}}/> */}
           <div style={styles.wrapper2}>
             <div className="dialogueBubble" style={styles.div}>
               <p style={{ fontSize: "24px", color: "white", display: "inline" }}>

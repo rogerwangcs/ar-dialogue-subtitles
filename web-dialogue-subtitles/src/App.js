@@ -15,8 +15,9 @@ class App extends Component {
         // { person: "Person 2", text: "hey my name is john" }
       ],
       faceDescriptions: [],
-      lipCoords: [{0: {_x: 0, _y: 0}}],
+      lipCoords: [{3: {_x: 0, _y: 0}}],
       mouths: [],
+      personSpeaking: 1,
     };
   }
 
@@ -26,7 +27,7 @@ class App extends Component {
         {
           mouths: nextState.lipCoords.map(face => this.mouthDist(face))
         },
-        // () => console.log(this.state.lipCoords)
+        () => console.log(this.state.mouths)
       );
     }
   }
@@ -34,25 +35,31 @@ class App extends Component {
   mouthDist = lipsArray => {
     let x = 0;
     let y = 0;
-    for (const lip of lipsArray) {
-      x += lip._x;
-      y += lip._y;
+    for (const lip of lipsArray){
+        x += lip._x;
+        y += lip._y;
     }
-    let averageX = x / lipsArray.length;
-    let averageY = y / lipsArray.length;
+    let averageX = x/(lipsArray.length);
+    let averageY = y/(lipsArray.length);
 
     let dist = 0;
-    for (const lip of lipsArray) {
-      dist += faceapi.euclideanDistance([averageX, averageY], [lip._x, lip._y]);
+    let maxDist = 0;
+    for (const lip of lipsArray){
+        const currDist = faceapi.euclideanDistance([averageX, averageY], [lip._x, lip._y]);
+        dist += currDist;
+        if (maxDist < currDist){
+            maxDist = currDist;
+        }
     }
+    dist = dist/maxDist;
     return dist;
   };
 
-  addToTranscript = (person, text) => {
+  addToTranscript = (text) => {
     if (!text) return;
     this.setState({
       transcriptLog: [
-        { person: person, text: text },
+        { person: this.state.personSpeaking, text: text },
         ...this.state.transcriptLog
       ]
     });
@@ -64,6 +71,15 @@ class App extends Component {
   setFaceDescriptions = faceDescriptions => {
     this.setState({ faceDescriptions });
   };
+
+  activeSpeakerCoords = () => {
+    if(this.state.mouths.length > 0) {
+      let i = this.state.mouths.indexOf(Math.max(...this.state.mouths));
+      this.setState({personSpeaking: i});
+      return this.state.lipCoords[0][i];
+    }
+    return {_x: 0, _y: 0};
+  }
 
   render() {
     const listTranscript = this.state.transcriptLog.map(line => {
@@ -105,7 +121,7 @@ class App extends Component {
           />
         </div>
         <h1 className="header">Live Subtitles</h1>
-        <Dictaphone addToTranscript={this.addToTranscript} lipCoord={this.state.lipCoords[0][0]}/>
+        <Dictaphone addToTranscript={this.addToTranscript} lipCoord={this.state.lipCoords[0][3]}/>
         <WebcamDisplay
           setLipCoords={this.setLipCoords}
           setFaceDescriptions={this.setFaceDescriptions}

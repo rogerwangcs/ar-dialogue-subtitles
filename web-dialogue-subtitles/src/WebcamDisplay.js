@@ -51,7 +51,8 @@ class WebcamDisplay extends Component {
     const ctx = this.canvasPicWebCam.current.getContext("2d");
     await this.getFullFaceDescription(webcam.video);
     ctx.clearRect(0, 0, this.canvasPicWebCam.current.width, this.canvasPicWebCam.current.height);
-    this.drawDescription(this.canvasPicWebCam.current);
+    // this draws the lines
+    // this.drawDescription(this.canvasPicWebCam.current);
   }
 
   render() {
@@ -61,7 +62,8 @@ class WebcamDisplay extends Component {
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          borderRadius: '10px'
         }}
       >
         <div style={{ position: "relative" }}>

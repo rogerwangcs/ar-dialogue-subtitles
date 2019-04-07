@@ -21,7 +21,7 @@ class AudioContainer extends Component {
 
   startTimer = () => {
     this.pauseTimer = setTimeout(() => {
-      this.props.addToTranscript(1, this.props.transcript);
+      this.props.addToTranscript(this.props.transcript);
       this.props.resetTranscript();
     }, 1500);
   };
