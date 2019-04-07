@@ -7,7 +7,8 @@ const Dictaphone = ({
   transcript,
   resetTranscript,
   browserSupportsSpeechRecognition,
-  addToTranscript
+  addToTranscript,
+  lipCoord
 }) => {
   if (!browserSupportsSpeechRecognition) {
     return null;
@@ -19,6 +20,7 @@ const Dictaphone = ({
       <AudioContainer
         transcript={transcript}
         addToTranscript={addToTranscript}
+        lipCoord={lipCoord}
         resetTranscript={resetTranscript}
       />
     </div>

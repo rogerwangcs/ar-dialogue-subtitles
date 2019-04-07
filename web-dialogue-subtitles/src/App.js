@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import * as faceapi from "face-api.js";
 import Particles from "react-particles-js";
 
 import Dictaphone from "./Dictaphone.js";
 import WebcamDisplay from "./WebcamDisplay";
-import DialogueBubble from "./DialogueBubble";
 import "./App.css";
 
 class App extends Component {
@@ -11,11 +11,42 @@ class App extends Component {
     super();
     this.state = {
       transcriptLog: [
-        { person: "Person 1", text: "hey my name is roger" },
-        { person: "Person 2", text: "hey my name is john" },
-      ]
+        // { person: "Person 1", text: "hey my name is roger" },
+        // { person: "Person 2", text: "hey my name is john" }
+      ],
+      faceDescriptions: [],
+      lipCoords: [{0: {_x: 0, _y: 0}}],
+      mouths: [],
     };
   }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.lipCoords !== nextState.lipCoords) {
+      this.setState(
+        {
+          mouths: nextState.lipCoords.map(face => this.mouthDist(face))
+        },
+        // () => console.log(this.state.lipCoords)
+      );
+    }
+  }
+
+  mouthDist = lipsArray => {
+    let x = 0;
+    let y = 0;
+    for (const lip of lipsArray) {
+      x += lip._x;
+      y += lip._y;
+    }
+    let averageX = x / lipsArray.length;
+    let averageY = y / lipsArray.length;
+
+    let dist = 0;
+    for (const lip of lipsArray) {
+      dist += faceapi.euclideanDistance([averageX, averageY], [lip._x, lip._y]);
+    }
+    return dist;
+  };
 
   addToTranscript = (person, text) => {
     if (!text) return;
@@ -25,6 +56,13 @@ class App extends Component {
         ...this.state.transcriptLog
       ]
     });
+  };
+
+  setLipCoords = lipCoords => {
+    this.setState({ lipCoords });
+  };
+  setFaceDescriptions = faceDescriptions => {
+    this.setState({ faceDescriptions });
   };
 
   render() {
@@ -51,7 +89,7 @@ class App extends Component {
                 },
                 size: {
                   value: 10,
-                  random: false,
+                  random: false
                 },
                 line_linked: {
                   enable: false
@@ -67,8 +105,11 @@ class App extends Component {
           />
         </div>
         <h1 className="header">Live Subtitles</h1>
-        <Dictaphone addToTranscript={this.addToTranscript} />
-        <WebcamDisplay />
+        <Dictaphone addToTranscript={this.addToTranscript} lipCoord={this.state.lipCoords[0][0]}/>
+        <WebcamDisplay
+          setLipCoords={this.setLipCoords}
+          setFaceDescriptions={this.setFaceDescriptions}
+        />
         <div className="transcriptContainer">
           <h1>Transcript:</h1>
           {listTranscript}

@@ -12,25 +12,18 @@ class AudioContainer extends Component {
     this.pauseTimer = null;
   }
 
-  componentDidMount() {
-    this.detectPause();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.paused) {
-      this.props.resetTranscript();
-      this.props.addToTranscript(1, this.props.transcript);
-      this.setState({ paused: false });
+  componentWillReceiveProps(newProps) {
+    if(newProps.transcript !== this.props.transcript) {
+      clearTimeout(this.pauseTimer);
+      this.startTimer();
     }
-    console.log("pause?:" + this.state.paused);
-    clearTimeout(this.pauseTimer);
-    this.detectPause();
   }
 
-  detectPause = () => {
+  startTimer = () => {
     this.pauseTimer = setTimeout(() => {
-      this.setState({ paused: true });
-    }, 1000);
+      this.props.addToTranscript(1, this.props.transcript);
+      this.props.resetTranscript();
+    }, 1500);
   };
 
   render() {
@@ -38,8 +31,8 @@ class AudioContainer extends Component {
       <div className="audioContainer">
         <DialogueBubble
           dialogue={this.props.transcript}
-          left="600px"
-          top="250px"
+          left={this.props.lipCoord._x}
+          top={this.props.lipCoord._y}
         />
       </div>
     );

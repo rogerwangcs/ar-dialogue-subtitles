@@ -8,8 +8,9 @@ class DialogueBubble extends Component {
   render() {
     const styles = {
       position: "absolute",
-      left: this.props.left,
-      top: this.props.top,
+      zIndex: 2,
+      left: this.props.left + 500,
+      top: this.props.top - 200,
       padding: "5px",
       maxWidth: "800px",
       borderRadius: "15px",
