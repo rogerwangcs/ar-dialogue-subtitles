@@ -79,7 +79,11 @@ class App extends Component {
       if (this.state.personSpeaking !== i) {
         this.setState({personSpeaking: i});
       }
-      return lipCoords[i][lipCoords[i].length >= 3 ? 3 : 0];
+      try {
+        return lipCoords[i][3];
+      } catch (err) {
+        // do nothing
+      }
     }
     if (this.state.personSpeaking !== -1) {
       this.setState({personSpeaking: -1});
