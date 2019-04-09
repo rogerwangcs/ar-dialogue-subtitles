@@ -1,6 +1,7 @@
 
-<img src="./media/live_subtitles_logo.png" alt="drawing" width="200"/>
-# [Live Subtitles](https://github.com/rogerwangcs/ar-dialogue-subtitles)
+<img src="./media/live_subtitles_logo.png" alt="live subtitles logo" width="200"/>
+# Live Subtitles
+
 > Display what people are saying as they are talking in real time!
 > A quick app built by David Shen, Roger Wang, Jerry Han, and Alex Sun.
 > Created using React, Tensorflow.js, and Chrome's speech-to-text API.
