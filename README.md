@@ -1,29 +1,62 @@
-Sceneform SDK for Android
-=====================
-Copyright (c) 2018 Google Inc.  All rights reserved.
 
-Sceneform is a 3D framework, with a physically based renderer, that's optimized for mobile, and that makes it easy for Java developers to build augmented reality apps.
+<img src="./media/live_subtitles_logo.png" alt="drawing" width="200"/>
+# [Live Subtitles](https://github.com/rogerwangcs/ar-dialogue-subtitles)
+> Display what people are saying as they are talking in real time!
+> A quick app built by David Shen, Roger Wang, Jerry Han, and Alex Sun.
+> Created using React, Tensorflow.js, and Chrome's speech-to-text API.
 
-Please note, we do not accept pull requests.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![HitCount](http://hits.dwyl.io/rogerwangcs/ar-dialogue-subtitles.svg)](http://hits.dwyl.io/rogerwangcs/ar-dialogue-subtitles)
 
+<!-- ![GIF](https://media.giphy.com/media/fXbUMQite0B2xQ6HMK/giphy.gif)
+[See full video demonstration here](https://www.youtube.com/watch?v=J0t2Kvortio&feature=youtu.be) -->
+
+<p align="center">
+  <img src="https://media.giphy.com/media/fXbUMQite0B2xQ6HMK/giphy.gif" stylealt="video"/>
+</p>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=J0t2Kvortio&feature=youtu.be">See Full Video Demonstration!</a>
+</p>
+<p align="center">
+  <img src="./media/image-demo.png" stylealt="image demo" width="800"/>
+</p>
+<p align="center">
+  <img src="./media/face-mesh.png" stylealt="face mesh demo" width="800"/>
+</p>
+
+---
 
 ## Getting Started
 
-This repository contains Sceneform sample projects.
+- All the `code` required to get started
+- Images of what it should look like
 
-To get started with the Sceneform SDK, follow the ARCore [Android Quickstart](//developers.google.com/ar/develop/java/quickstart) guide.
+### Clone
+
+- Clone this repo to your local machine
+`git clone https://github.com/rogerwangcs/ar-dialogue-subtitles.git`
+
+### Setup
+
+##### Install dependencies
+`yarn install` or `npm install`
 
 
-## API Reference
+##### Install dependencies
+`yarn install` or `npm install`
 
-See the [Sceneform API Reference](//developers.google.com/ar/reference/java/com/google/ar/sceneform/package-summary).
+### Run
+`yarn start` or `npm npm start`
 
+Enjoy!
 
-## Release Notes
+---
 
-The SDK release notes are available on the [releases](//github.com/google-ar/sceneform-android-sdk/releases) page.
+## Contributors
+- [Roger Wang](https://github.com/rogerwangcs)
+- [David Shen](https://github.com/pantherman594)
+- [Jerry Han](https://github.com/sparkyman173)
+- [Alexander Sun](https://github.com/technoAl)
 
-
-## Terms & Conditions
-
-By downloading the Sceneform SDK for Android, you agree that the [Google APIs Terms of Service](//developers.google.com/terms/) governs your use thereof.
+---
+## License
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
