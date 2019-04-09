@@ -11,6 +11,12 @@
 <!-- ![GIF](https://media.giphy.com/media/fXbUMQite0B2xQ6HMK/giphy.gif)
 [See full video demonstration here](https://www.youtube.com/watch?v=J0t2Kvortio&feature=youtu.be) -->
 
+<h2 align="center">
+  <a href="https://www.youtube.com/watch?v=J0t2Kvortio&feature=youtu.be">Try It Yourself</a>
+</h2>
+
+---
+
 <p align="center">
   <img src="https://media.giphy.com/media/fXbUMQite0B2xQ6HMK/giphy.gif" stylealt="video"/>
 </p>
