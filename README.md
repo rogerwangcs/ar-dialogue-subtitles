@@ -1,5 +1,6 @@
 
 <img src="./media/live_subtitles_logo.png" alt="live subtitles logo" width="200"/>
+
 # Live Subtitles
 
 > Display what people are saying as they are talking in real time!
@@ -11,9 +12,9 @@
 <!-- ![GIF](https://media.giphy.com/media/fXbUMQite0B2xQ6HMK/giphy.gif)
 [See full video demonstration here](https://www.youtube.com/watch?v=J0t2Kvortio&feature=youtu.be) -->
 
-<h2 align="center">
-  <a href="https://www.youtube.com/watch?v=J0t2Kvortio&feature=youtu.be">Try It Yourself</a>
-</h2>
+<h1 align="center">
+  <a href="https://live-subtitles.herokuapp.com">Try It Yourself</a>
+</h1>
 
 ---
 
