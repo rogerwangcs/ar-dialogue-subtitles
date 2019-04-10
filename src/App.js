@@ -105,7 +105,8 @@ class App extends Component {
 
     return (
       <div className="App" tabIndex="0" onKeyDown={(ev) => {
-        if (ev.keyCode === 32) {
+        //'w' key
+        if (ev.keyCode === 87) {
           this.setState((state) => ({
             showLandmarks: !state.showLandmarks,
           }));
@@ -122,7 +123,7 @@ class App extends Component {
                   value: "#648be5"
                 },
                 size: {
-                  value: 10,
+                  value: 15,
                   random: false
                 },
                 line_linked: {
@@ -130,7 +131,7 @@ class App extends Component {
                 },
                 move: {
                   random: true,
-                  speed: 0.25,
+                  speed: 3,
                   direction: "top",
                   out_mode: "out"
                 }
@@ -145,6 +146,8 @@ class App extends Component {
           setFaceDescriptions={this.setFaceDescriptions}
           showLandmarks={this.state.showLandmarks}
         />
+        <p style={{color: 'white'}}>Wait for the black dot to appear above your head.</p>
+        <p style={{color: 'white'}}>Press 'w' to toggle face wireframe.</p>
         <div className="transcriptContainer">
           <h1>Transcript:</h1>
           {listTranscript}

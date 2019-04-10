@@ -63,6 +63,7 @@ body {
 .transcriptContainer > h1 {
   display: block;
   margin-bottom: 25px;
+  border-radius: 15px;
 }
 
 .transcriptContainer > div {
